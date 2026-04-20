@@ -1,0 +1,187 @@
+// ==UserScript==
+// @name         Zabbix Purple Theme UwU
+// @namespace    https://github.com/oumuamuax/zabbix-sound-alerts
+// @version      8.0
+// @description  Tema morado anime UwU para Zabbix — sin APIs externas, solo CSS
+// @author       oumuamuax
+// @match        *://xabbix.acens.priv/*
+// @grant        none
+// @run-at       document-start
+// @noframes
+// ==/UserScript==
+
+(function () {
+    'use strict';
+
+    const style = document.createElement('style');
+    style.id = 'zbx-purple-uwu';
+    style.textContent = `
+        /* === FONDO GENERAL === */
+        body {
+            background-color: #0d0a14 !important;
+        }
+
+        /* === SIDEBAR === */
+        .sidebar {
+            background: linear-gradient(180deg, #1a0a2e 0%, #2d1b4e 100%) !important;
+        }
+        .sidebar .server-name {
+            color: #d4a0ff !important;
+        }
+        .sidebar nav a {
+            color: #c8a0e8 !important;
+        }
+        .sidebar nav a:hover,
+        .sidebar nav a:focus {
+            color: #fff !important;
+            background-color: rgba(200,130,255,0.15) !important;
+        }
+        .sidebar nav .is-selected > a {
+            color: #fff !important;
+            background-color: rgba(200,130,255,0.2) !important;
+            border-color: #c880ff !important;
+        }
+        .sidebar .submenu {
+            background-color: #150d24 !important;
+        }
+        .sidebar .submenu a {
+            color: #c0a0d8 !important;
+        }
+        .sidebar .submenu a:hover {
+            color: #fff !important;
+            background-color: rgba(200,130,255,0.12) !important;
+        }
+        .sidebar .submenu .is-selected > a {
+            color: #e8c0ff !important;
+            background-color: rgba(200,130,255,0.18) !important;
+            border-color: #a855f7 !important;
+        }
+        .sidebar .scrollable .scrollbar-track {
+            background: rgba(200,130,255,0.2) !important;
+        }
+        .sidebar .scrollable .scrollbar-thumb {
+            background: rgba(200,130,255,0.5) !important;
+        }
+        .sidebar .form-search .search {
+            background-color: rgba(200,130,255,0.1) !important;
+            border-color: rgba(200,130,255,0.3) !important;
+            color: #e0c0ff !important;
+        }
+        .sidebar .sidebar-header-buttons .btn-icon::before {
+            color: #b080d0 !important;
+        }
+
+        /* === HEADER === */
+        .header-title {
+            background-color: #1a0e28 !important;
+            color: #e0c0ff !important;
+        }
+        .wrapper {
+            background-color: #0d0a14 !important;
+        }
+
+        /* === FILTROS === */
+        .filter-space {
+            background-color: #1a0e28 !important;
+            border-color: rgba(200,130,255,0.15) !important;
+        }
+        .tabfilter-container,
+        .tabfilter-content-container {
+            background-color: #1a0e28 !important;
+        }
+        .tabfilter-item-link {
+            color: #c880ff !important;
+        }
+        .tabfilter-item-link:hover {
+            color: #e0b0ff !important;
+        }
+        .tabfilter-item-link.selected {
+            color: #fff !important;
+            border-bottom-color: #a855f7 !important;
+        }
+
+        /* === TABLA — solo estructura, NO severidades ni tags === */
+        .list-table {
+            background-color: #12091e !important;
+            border-color: rgba(200,130,255,0.12) !important;
+        }
+        .list-table thead th {
+            background-color: #1e1035 !important;
+            color: #d4b0ff !important;
+            border-color: rgba(200,130,255,0.2) !important;
+        }
+        .list-table thead th a {
+            color: #d4b0ff !important;
+        }
+
+        /* Filas SIN severidad */
+        .list-table tbody tr:not([class*='flh-']) td:not([class*='-bg']) {
+            background-color: #12091e !important;
+            color: #e0d0f0 !important;
+        }
+        .list-table tbody tr:not([class*='flh-']):hover td:not([class*='-bg']) {
+            background-color: rgba(200,130,255,0.08) !important;
+        }
+        .list-table.compact-view tr:not([class*='flh-']) td:not([class*='-bg']) {
+            box-shadow: inset 0 -1px 0 0 rgba(200,130,255,0.08) !important;
+        }
+
+        /* Links en filas sin severidad */
+        .list-table tbody tr:not([class*='flh-']) td:not([class*='-bg']) a {
+            color: #c880ff !important;
+        }
+        .list-table tbody tr:not([class*='flh-']) td:not([class*='-bg']) a:hover {
+            color: #e0b0ff !important;
+        }
+
+        /* Ack link */
+        .list-table td a.link-action {
+            color: #c880ff !important;
+        }
+
+        /* === PAGINACIÓN === */
+        .table-paging {
+            color: #b080d0 !important;
+        }
+
+        /* === BOTONES === */
+        .btn-alt {
+            background-color: #2d1b4e !important;
+            border-color: rgba(200,130,255,0.3) !important;
+            color: #d4b0ff !important;
+        }
+        .btn-alt:hover {
+            background-color: #3d2560 !important;
+        }
+
+        /* === OVERLAY === */
+        .overlay-dialogue {
+            background-color: #1a0e28 !important;
+            border-color: rgba(200,130,255,0.2) !important;
+        }
+
+        /* === INPUTS === */
+        input:not([type="checkbox"]):not([type="radio"]),
+        select, textarea, .multiselect-control {
+            background-color: #1a0e28 !important;
+            border-color: rgba(200,130,255,0.25) !important;
+            color: #e0d0f0 !important;
+        }
+
+        /* === SCROLLBAR === */
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: #0d0a14; }
+        ::-webkit-scrollbar-thumb { background: rgba(200,130,255,0.35); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: rgba(200,130,255,0.55); }
+
+        /* === ICONOS === */
+        .icon { color: #b080d0 !important; }
+
+        /* === GREEN (Ack, resolved) — respetar === */
+        .green, a.green { color: #80e8a0 !important; }
+    `;
+
+    // Inyectar lo antes posible (document-start) para evitar flash
+    (document.head || document.documentElement).appendChild(style);
+    console.log('%c[ZBX-PURPLE] ✅ Tema morado UwU activo 🌸', 'color:#c880ff;font-size:14px;font-weight:bold');
+})();
